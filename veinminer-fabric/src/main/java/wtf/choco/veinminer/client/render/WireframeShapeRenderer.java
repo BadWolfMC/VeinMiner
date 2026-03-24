@@ -7,7 +7,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import java.util.function.Supplier;
 
-import net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderContext;
+import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderContext;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource.BufferSource;
@@ -60,7 +60,7 @@ public final class WireframeShapeRenderer {
      *
      * @param context the world render context
      */
-    public void render(@NotNull WorldRenderContext context) {
+    public void render(@NotNull LevelRenderContext context) {
         Minecraft client = Minecraft.getInstance();
         if (!this.client.hasServerState()) {
             return;
@@ -92,7 +92,7 @@ public final class WireframeShapeRenderer {
         double relY = blockPos.getY() - camera.y;
         double relZ = blockPos.getZ() - camera.z;
 
-        PoseStack stack = context.matrices();
+        PoseStack stack = context.poseStack();
         BufferSource source = client.renderBuffers().bufferSource();
         this.renderShape(shape, source, VeinMinerRenderType.wireframe(), stack, relX, relY, relZ, WIREFRAME_COLOR_SOLID, 1.0F);
         this.renderShape(shape, source, VeinMinerRenderType.wireframeTransparent(), stack, relX, relY, relZ, WIREFRAME_COLOR_TRANSLUCENT, 2.0F);
