@@ -3,8 +3,6 @@ plugins {
     alias(libs.plugins.shadow)
 }
 
-version = "2.3.1"
-
 dependencies {
     api(project(":veinminer-common"))
     shadow(project(":veinminer-common"))
